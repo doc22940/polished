@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import type { Styles } from '../types/style'
 
 /**
@@ -23,7 +24,7 @@ import type { Styles } from '../types/style'
  *   wordBreak: 'break-all',
  * }
  */
-export default function wordWrap(wrap?: string = 'break-word'): Styles {
+function wordWrap(wrap?: string = 'break-word'): Styles {
   const wordBreak = wrap === 'break-word' ? 'break-all' : wrap
   return {
     overflowWrap: wrap,
@@ -31,3 +32,5 @@ export default function wordWrap(wrap?: string = 'break-word'): Styles {
     wordBreak,
   }
 }
+
+export default moduleWrapper(wordWrap)

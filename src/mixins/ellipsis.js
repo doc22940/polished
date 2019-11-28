@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import type { Styles } from '../types/style'
 
 /**
@@ -26,7 +27,7 @@ import type { Styles } from '../types/style'
  *   'wordWrap': 'normal'
  * }
  */
-export default function ellipsis(width?: string | number = '100%'): Styles {
+function ellipsis(width?: string | number = '100%'): Styles {
   return {
     display: 'inline-block',
     maxWidth: width,
@@ -36,3 +37,5 @@ export default function ellipsis(width?: string | number = '100%'): Styles {
     wordWrap: 'normal',
   }
 }
+
+export default moduleWrapper(ellipsis)

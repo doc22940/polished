@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import type { Styles } from '../types/style'
 
 /**
@@ -23,7 +24,7 @@ import type { Styles } from '../types/style'
  *   'display': 'table'
  * }
  */
-export default function clearFix(parent?: string = '&'): Styles {
+function clearFix(parent?: string = '&'): Styles {
   const pseudoSelector = `${parent}::after`
   return {
     [pseudoSelector]: {
@@ -33,3 +34,5 @@ export default function clearFix(parent?: string = '&'): Styles {
     },
   }
 }
+
+export default moduleWrapper(clearFix)

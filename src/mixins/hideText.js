@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import type { Styles } from '../types/style'
 
 /**
@@ -27,10 +28,12 @@ import type { Styles } from '../types/style'
  * }
  */
 
-export default function hideText(): Styles {
+function hideText(): Styles {
   return {
     textIndent: '101%',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
   }
 }
+
+export default moduleWrapper(hideText)

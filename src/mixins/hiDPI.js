@@ -1,5 +1,5 @@
 // @flow
-
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 /**
  * Generates a media query to target HiDPI devices.
  *
@@ -29,7 +29,7 @@
  * }
  */
 
-export default function hiDPI(ratio?: number = 1.3): string {
+function hiDPI(ratio?: number = 1.3): string {
   return `
     @media only screen and (-webkit-min-device-pixel-ratio: ${ratio}),
     only screen and (min--moz-device-pixel-ratio: ${ratio}),
@@ -38,3 +38,5 @@ export default function hiDPI(ratio?: number = 1.3): string {
     only screen and (min-resolution: ${ratio}dppx)
   `
 }
+
+export default moduleWrapper(hiDPI)

@@ -1038,6 +1038,30 @@
     };
   }
 
+  var cssVariableRegex = /var\((--[\S]*?)\)/g; // @private
+
+  function cssVariableParser(arg) {
+    var cssVariable = cssVariableRegex.exec(arg);
+    if ((cssVariable === null || cssVariable === void 0 ? void 0 : cssVariable.length) <= 1) return arg; // eslint-disable-next-line no-undef
+
+    var parsedCSSVariable = getComputedStyle( // eslint-disable-next-line no-undef
+    document.documentElement).getPropertyValue(cssVariable[1]);
+    return parsedCSSVariable === '' ? parsedCSSVariable : arg;
+  }
+
+  function moduleWrapper(func) {
+    return function () {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      var parsedArgs = args.map(function (arg) {
+        return cssVariableParser(arg);
+      });
+      func.apply(void 0, parsedArgs);
+    };
+  }
+
   function ellipsis(width) {
     if (width === void 0) {
       width = '100%';
@@ -1052,6 +1076,9 @@
       wordWrap: 'normal'
     };
   }
+
+  var ellipsis$1 = /*#__PURE__*/
+  moduleWrapper(ellipsis);
 
   function fluidRange(cssProp, minScreen, maxScreen) {
     if (minScreen === void 0) {
@@ -3476,7 +3503,7 @@
   exports.darken = curriedDarken;
   exports.desaturate = curriedDesaturate;
   exports.directionalProperty = directionalProperty;
-  exports.ellipsis = ellipsis;
+  exports.ellipsis = ellipsis$1;
   exports.em = em;
   exports.fluidRange = fluidRange;
   exports.fontFace = fontFace;

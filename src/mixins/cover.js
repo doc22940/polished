@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import type { Styles } from '../types/style'
 
 /**
@@ -25,7 +26,7 @@ import type { Styles } from '../types/style'
  *   'left: '0'
  * }
  */
-export default function cover(offset?: number | string = 0): Styles {
+function cover(offset?: number | string = 0): Styles {
   return {
     position: 'absolute',
     top: offset,
@@ -34,3 +35,5 @@ export default function cover(offset?: number | string = 0): Styles {
     left: offset,
   }
 }
+
+export default moduleWrapper(cover)
