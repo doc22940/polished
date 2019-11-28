@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import type { Styles } from '../types/style'
 
 /**
@@ -21,7 +22,7 @@ import type { Styles } from '../types/style'
  *   'width': '250px',
  * }
  */
-export default function size(
+function size(
   height: string | number,
   width?: string | number = height,
 ): Styles {
@@ -30,3 +31,5 @@ export default function size(
     width,
   }
 }
+
+export default moduleWrapper(size)

@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import stripUnit from '../helpers/stripUnit'
 import PolishedError from '../internalHelpers/_errors'
 
@@ -25,7 +26,7 @@ import PolishedError from '../internalHelpers/_errors'
  *   'fontSize': 'calc(-9.090909090909093px + 9.090909090909092vw)'
  * }
  */
-export default function between(
+function between(
   fromSize: string | number,
   toSize: string | number,
   minScreen?: string = '320px',
@@ -61,3 +62,5 @@ export default function between(
     100 * slope
   ).toFixed(2)}vw)`
 }
+
+export default moduleWrapper(between)

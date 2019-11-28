@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import type { TimingFunction } from '../types/timingFunction'
 
 /* eslint-disable key-spacing */
@@ -57,8 +58,8 @@ function getTimingFunction(functionName: string): string {
  * }
  */
 
-export default function timingFunctions(
-  timingFunction: TimingFunction,
-): string {
+function timingFunctions(timingFunction: TimingFunction): string {
   return getTimingFunction(timingFunction)
 }
+
+export default moduleWrapper(timingFunctions)

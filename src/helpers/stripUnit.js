@@ -1,4 +1,5 @@
 // @flow
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 
 const cssRegex = /^([+-]?(?:\d+|\d*\.\d+))([a-z]*|%)$/
 
@@ -25,10 +26,7 @@ const cssRegex = /^([+-]?(?:\d+|\d*\.\d+))([a-z]*|%)$/
  *   '--unit': 'px',
  * }
  */
-export default function stripUnit(
-  value: string | number,
-  unitReturn?: boolean,
-): any {
+function stripUnit(value: string | number, unitReturn?: boolean): any {
   if (typeof value !== 'string') return unitReturn ? [value, undefined] : value
   const matchedValue = value.match(cssRegex)
 
@@ -40,3 +38,5 @@ export default function stripUnit(
   if (matchedValue) return parseFloat(value)
   return value
 }
+
+export default moduleWrapper(stripUnit)

@@ -1,5 +1,6 @@
 // @flow
 import capitalizeString from '../internalHelpers/_capitalizeString'
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import PolishedError from '../internalHelpers/_errors'
 
 import type { Styles } from '../types/style'
@@ -24,10 +25,7 @@ import type { Styles } from '../types/style'
  *   'borderTopLeftRadius': '5px',
  * }
  */
-export default function borderRadius(
-  side: string,
-  radius: string | number,
-): Styles {
+function borderRadius(side: string, radius: string | number): Styles {
   const uppercaseSide = capitalizeString(side)
   if (!radius && radius !== 0) {
     throw new PolishedError(62)
@@ -48,3 +46,5 @@ export default function borderRadius(
 
   throw new PolishedError(63)
 }
+
+export default moduleWrapper(borderRadius)

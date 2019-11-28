@@ -1,5 +1,6 @@
 // @flow
 import stripUnit from './stripUnit'
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import PolishedError from '../internalHelpers/_errors'
 
 import type { ModularScaleRatio } from '../types/modularScaleRatio'
@@ -49,7 +50,7 @@ function getRatio(ratioName: string): number {
  *   'fontSize': '1.77689em'
  * }
  */
-export default function modularScale(
+function modularScale(
   steps: number,
   base?: number | string = '1em',
   ratio?: ModularScaleRatio = 1.333,
@@ -70,3 +71,5 @@ export default function modularScale(
 
   return `${realBase * realRatio ** steps}${unit}`
 }
+
+export default moduleWrapper(modularScale)

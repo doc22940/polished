@@ -1,5 +1,6 @@
 // @flow
 import hiDPI from './hiDPI'
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 import PolishedError from '../internalHelpers/_errors'
 
 import type { Styles } from '../types/style'
@@ -32,7 +33,7 @@ import type { Styles } from '../types/style'
  *   }
  * }
  */
-export default function retinaImage(
+function retinaImage(
   filename: string,
   backgroundSize?: string,
   extension?: string = 'png',
@@ -56,3 +57,5 @@ export default function retinaImage(
     },
   }
 }
+
+export default moduleWrapper(retinaImage)

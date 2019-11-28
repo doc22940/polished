@@ -1,5 +1,6 @@
 // @flow
 import directionalProperty from '../helpers/directionalProperty'
+import moduleWrapper from '../internalHelpers/_moduleWrapper'
 
 import type { Styles } from '../types/style'
 
@@ -25,6 +26,8 @@ import type { Styles } from '../types/style'
  *   'marginLeft': '48px'
  * }
  */
-export default function margin(...values: Array<?string | ?number>): Styles {
+function margin(...values: Array<?string | ?number>): Styles {
   return directionalProperty('margin', ...values)
 }
+
+export default moduleWrapper(margin)
